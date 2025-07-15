@@ -14,7 +14,7 @@ public interface WorkspaceTemplateURLAddingTools {
 		@ToolParam(name ="branch", description = "The github repo branch to use.  If null or empty is provided, the default branch will be selected")
 		String branch);
 
-	@Tool(description = "return a string array of the existing workspace template urls in the current bndtools/Eclipse configuration")
-	String[] getExistingWorkspaceTemplateURLs();
+	@Tool(description = "return json object as a String.  The object has a single field/property with name \"name\" and value an array of strings.  Each of the uri array entries represents one of the workspace template github urls stored in the current bndtools workspace template Eclipse preferences accessed in the user interface via File->Window-Preferences->Bndtools->Workspace Template->Raw Github URls")
+	String getExistingWorkspaceTemplateURLs();
 
 }
