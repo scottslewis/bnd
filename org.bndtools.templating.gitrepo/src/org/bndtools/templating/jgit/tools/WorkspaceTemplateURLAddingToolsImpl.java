@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 import org.bndtools.mcp.tools.workspacetemplate.WorkspaceTemplateURLAddingTools;
 import org.bndtools.templating.jgit.GitRepoPreferences;
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 
 import aQute.bnd.header.Attrs;
@@ -16,23 +15,16 @@ import aQute.libg.tuple.Pair;
 })
 public class WorkspaceTemplateURLAddingToolsImpl implements WorkspaceTemplateURLAddingTools {
 
-	private GitRepoPreferences	prefs;
-	private Parameters			params;
-
-	@Activate
-	void activate() {
-		this.prefs = new GitRepoPreferences();
-		this.params = this.prefs.getGitRepos();
-	}
-
 	@Override
 	public boolean addWorkspaceTemplateURL(String workspaceTemplateURL, String name, String branch) {
 		// Check for null
 		if (workspaceTemplateURL == null || workspaceTemplateURL.isBlank()) {
 			return false;
 		}
+		GitRepoPreferences prefs = new GitRepoPreferences();
+		Parameters params = prefs.getGitRepos();
 		// Check if it's already there (case insensitive_
-		for (String k : this.params.keySet()) {
+		for (String k : params.keySet()) {
 			if (k.equalsIgnoreCase(workspaceTemplateURL)) {
 				return false;
 			}
@@ -51,9 +43,10 @@ public class WorkspaceTemplateURLAddingToolsImpl implements WorkspaceTemplateURL
 
 	@Override
 	public String getExistingWorkspaceTemplateURLs() {
+		Parameters params = new GitRepoPreferences().getGitRepos();
 		// Generating json with jackson would be much better
 		StringBuffer json = new StringBuffer("{ \"uris\": [");
-		for (Iterator<String> i = this.params.keySet()
+		for (Iterator<String> i = params.keySet()
 			.iterator(); i.hasNext();) {
 			String item = i.next();
 			json.append("\"" + item + "\"");
