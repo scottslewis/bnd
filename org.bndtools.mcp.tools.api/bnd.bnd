@@ -1,0 +1,4 @@
+-buildpath: \
+	org.osgi.annotation.bundle,\
+	org.osgi.annotation.versioning,\
+	org.eclipse.ecf.ai.mcp.tools

@@ -4,8 +4,8 @@
 -buildpath: \
 	osgi.annotation,\
 	osgi.core,\
-	org.osgi.service.component.annotations;version=1.3.0,\
-	org.osgi.service.metatype;version=1.3.0,\
+	org.osgi.service.component.annotations;version='1.3.0',\
+	org.osgi.service.metatype;version='1.3.0',\
 	org.osgi.util.function;version=latest,\
 	org.osgi.util.promise;version=latest,\
 	aQute.libg,\
@@ -24,7 +24,10 @@
 	org.eclipse.core.commands,\
 	org.eclipse.equinox.common,\
 	org.eclipse.equinox.preferences,\
-	bndtools.core;version=latest
+	bndtools.core;version=latest,\
+	org.eclipse.ecf.ai.mcp.tools,\
+	org.bndtools.mcp.tools.api
+	org.eclipse.ecf.ai.mcp.tools
 
 -includepackage: org.bndtools.templating.jgit.*
 -includeresource: /=resources/unprocessed,\
